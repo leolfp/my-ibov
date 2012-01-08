@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+		  http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+         version="2.5">
+
+    <servlet>
+        <servlet-name>app.myIbov.MyIbov MyIbovService</servlet-name>
+        <servlet-class>app.myIbov.server.MyIbovServiceImpl</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>app.myIbov.MyIbov MyIbovService</servlet-name>
+        <url-pattern>/MyIbov/MyIbovService</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>cron</servlet-name>
+        <servlet-class>app.myIbov.server.UpdateQuoteServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>cron</servlet-name>
+        <url-pattern>/cron/updateQuote</url-pattern>
+    </servlet-mapping>
+
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
+
+    <!-- Securing cron jobs -->
+    <security-constraint>
+        <web-resource-collection>
+            <url-pattern>/cron/updateQuote</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>admin</role-name>
+        </auth-constraint>
+    </security-constraint>
+</web-app>

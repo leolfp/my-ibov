@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="gwt-user">
+    <CLASSES>
+      <root url="jar://C:/Program Files/Google/gwt-2.3.0/gwt-user.jar!/" />
+      <root url="jar://C:/Program Files/Google/gwt-2.3.0/validation-api-1.0.0.GA.jar!/" />
+      <root url="jar://C:/Program Files/Google/gwt-2.3.0/validation-api-1.0.0.GA-sources.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://C:/Program Files/Google/gwt-2.3.0/gwt-user.jar!/" />
+      <root url="jar://C:/Program Files/Google/gwt-2.3.0/validation-api-1.0.0.GA-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
