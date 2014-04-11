@@ -40,8 +40,8 @@
 
 <table align="center">
     <tr>
-        <td id="slot1"></td>
-        <td id="slot2"></td>
+        <td id="slotA"></td>
+        <td id="slotB"></td>
     </tr>
 </table>
 </body>
