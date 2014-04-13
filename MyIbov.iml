@@ -44,6 +44,7 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="gwt-user" level="project" />
     <orderEntry type="library" name="groovy-2.2.2" level="application" />
+    <orderEntry type="library" name="flatworm-2.0" level="application" />
   </component>
 </module>
 
