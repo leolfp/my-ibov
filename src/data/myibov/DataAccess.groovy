@@ -1,20 +1,17 @@
 package data.myibov
 
-import groovy.sql.Sql
+import javax.persistence.Persistence
 
 /**
  * Created by leonardo on 4/11/14.
  */
 class DataAccess {
-    Sql sql
+    static factory = Persistence.createEntityManagerFactory("MyIbovStore")
+    static manager = factory.createEntityManager()
 
-    DataAccess (String database, String user, String password){
-        sql = Sql.newInstance("jdbc:mysql://localhost/${database}", user, password, 'com.mysql.jdbc.Driver')
+    static void store(List<Quote> quotes){
+        manager.transaction.begin()
+        quotes.each { manager.persist it }
+        manager.transaction.commit()
     }
-
-    DataAccess(){
-        DataAccess('myibov', 'stock', 'try123')
-    }
-
-
 }

@@ -11,6 +11,7 @@
           <element id="file-copy" path="C:\Program Files\Google\gwt-2.3.0\gwt-servlet.jar" />
           <element id="file-copy" path="C:/Program Files/SDKs/gwt-2.6.0/gwt-servlet.jar" />
           <element id="library" level="application" name="flatworm-2.0" />
+          <element id="library" level="application" name="apache-openjpa-2.2" />
         </element>
       </element>
       <element id="gwt-compiler-output" facet="MyIbov/gwt/GWT" />

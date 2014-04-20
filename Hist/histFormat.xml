@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--DOCTYPE file-format SYSTEM "http://www.blackbear.com/dtds/flatworm-data-description_1_0.dtd"-->
+<file-format>
+    <converter name="string" class="com.blackbear.flatworm.converters.CoreConverters" method="convertChar" return-type="java.lang.String"/>
+    <converter name="decimal" class="biz.myibov.SpecializedConverter" method="convertBigDecimal" return-type="java.math.BigDecimal"/>
+    <converter name="integer" class="biz.myibov.SpecializedConverter" method="convertBigInteger" return-type="java.math.BigInteger"/>
+    <converter name="long" class="biz.myibov.SpecializedConverter" method="convertLong" return-type="java.lang.Long"/>
+    <converter name="date" class="com.blackbear.flatworm.converters.CoreConverters" method="convertDate" return-type="java.util.Date"/>
+
+    <record name="quote">
+        <record-ident>
+            <field-ident field-start="0" field-length="2">
+                <match-string>01</match-string>
+            </field-ident>
+        </record-ident>
+        <record-definition>
+            <bean name="quote" class="data.myibov.Quote"/>
+            <line>
+                <record-element length="2" />
+                <record-element length="8" beanref="quote.data" type="date" >
+                    <conversion-option name="format" value="yyyyMMdd" />
+                </record-element>
+                <record-element length="2" beanref="quote.codBdi" type="string" >
+                    <conversion-option name="justify" value="left" />
+                </record-element>
+                <record-element length="12" beanref="quote.codNeg" type="string" >
+                    <conversion-option name="justify" value="left" />
+                </record-element>
+                <record-element length="3" beanref="quote.tpMerc" type="long" >
+                    <conversion-option name="pad-character" value="0"/>
+                    <conversion-option name="justify" value="right"/>
+                </record-element>
+                <record-element length="12" beanref="quote.nomRes" type="string" >
+                    <conversion-option name="justify" value="left" />
+                </record-element>
+                <record-element length="10" beanref="quote.especi" type="string" >
+                    <conversion-option name="justify" value="left" />
+                </record-element>
+                <record-element length="3" beanref="quote.prazoT" type="long" >
+                    <conversion-option name="pad-character" value="0"/>
+                    <conversion-option name="justify" value="right"/>
+                </record-element>
+                <record-element length="4" beanref="quote.modRef" type="string" >
+                    <conversion-option name="justify" value="left" />
+                </record-element>
+                <record-element length="13" beanref="quote.preAbe" type="decimal" >
+                    <conversion-option name="decimal-places" value="2"/>
+                    <conversion-option name="decimal-implied" value="true"/>
+                    <conversion-option name="pad-character" value="0"/>
+                    <conversion-option name="justify" value="right"/>
+                </record-element>
+                <record-element length="13" beanref="quote.preMax" type="decimal" >
+                    <conversion-option name="decimal-places" value="2"/>
+                    <conversion-option name="decimal-implied" value="true"/>
+                    <conversion-option name="pad-character" value="0"/>
+                    <conversion-option name="justify" value="right"/>
+                </record-element>
+                <record-element length="13" beanref="quote.preMin" type="decimal" >
+                    <conversion-option name="decimal-places" value="2"/>
+                    <conversion-option name="decimal-implied" value="true"/>
+                    <conversion-option name="pad-character" value="0"/>
+                    <conversion-option name="justify" value="right"/>
+                </record-element>
+                <record-element length="13" beanref="quote.preMed" type="decimal" >
+                    <conversion-option name="decimal-places" value="2"/>
+                    <conversion-option name="decimal-implied" value="true"/>
+                    <conversion-option name="pad-character" value="0"/>
+                    <conversion-option name="justify" value="right"/>
+                </record-element>
+                <record-element length="13" beanref="quote.preUlt" type="decimal" >
+                    <conversion-option name="decimal-places" value="2"/>
+                    <conversion-option name="decimal-implied" value="true"/>
+                    <conversion-option name="pad-character" value="0"/>
+                    <conversion-option name="justify" value="right"/>
+                </record-element>
+                <record-element length="13" beanref="quote.preOfC" type="decimal" >
+                    <conversion-option name="decimal-places" value="2"/>
+                    <conversion-option name="decimal-implied" value="true"/>
+                    <conversion-option name="pad-character" value="0"/>
+                    <conversion-option name="justify" value="right"/>
+                </record-element>
+                <record-element length="13" beanref="quote.preOfV" type="decimal" >
+                    <conversion-option name="decimal-places" value="2"/>
+                    <conversion-option name="decimal-implied" value="true"/>
+                    <conversion-option name="pad-character" value="0"/>
+                    <conversion-option name="justify" value="right"/>
+                </record-element>
+                <record-element length="5" beanref="quote.totNeg" type="long" >
+                    <conversion-option name="pad-character" value="0"/>
+                    <conversion-option name="justify" value="right"/>
+                </record-element>
+                <record-element length="18" beanref="quote.quaTot" type="integer" >
+                    <conversion-option name="pad-character" value="0"/>
+                    <conversion-option name="justify" value="right"/>
+                </record-element>
+                <record-element length="18" beanref="quote.volTot" type="decimal" >
+                    <conversion-option name="decimal-places" value="2"/>
+                    <conversion-option name="decimal-implied" value="true"/>
+                    <conversion-option name="pad-character" value="0"/>
+                    <conversion-option name="justify" value="right"/>
+                </record-element>
+                <record-element length="13" beanref="quote.preExe" type="decimal" >
+                    <conversion-option name="decimal-places" value="2"/>
+                    <conversion-option name="decimal-implied" value="true"/>
+                    <conversion-option name="pad-character" value="0"/>
+                    <conversion-option name="justify" value="right"/>
+                </record-element>
+                <record-element length="1" beanref="quote.indOpc" type="string" >
+                    <conversion-option name="justify" value="left" />
+                </record-element>
+                <record-element length="8" beanref="quote.datVen" type="date" >
+                    <conversion-option name="format" value="yyyyMMdd" />
+                </record-element>
+                <record-element length="7" beanref="quote.fatCot" type="long" >
+                    <conversion-option name="pad-character" value="0"/>
+                    <conversion-option name="justify" value="right"/>
+                </record-element>
+                <record-element length="13" beanref="quote.ptoExe" type="decimal" >
+                    <conversion-option name="decimal-places" value="6"/>
+                    <conversion-option name="decimal-implied" value="true"/>
+                    <conversion-option name="pad-character" value="0"/>
+                    <conversion-option name="justify" value="right"/>
+                </record-element>
+                <record-element length="12" beanref="quote.codIsi" type="string" >
+                    <conversion-option name="justify" value="left" />
+                </record-element>
+                <record-element length="3" beanref="quote.disMes" type="long" >
+                    <conversion-option name="pad-character" value="0"/>
+                    <conversion-option name="justify" value="right"/>
+                </record-element>
+            </line>
+        </record-definition>
+    </record>
+
+    <record name="header">
+        <record-ident>
+            <field-ident field-start="0" field-length="2">
+                <match-string>00</match-string>
+            </field-ident>
+        </record-ident>
+        <record-definition>
+            <bean name="header" class="data.myibov.Header"/>
+            <line>
+                <record-element length="2" />
+                <record-element length="13" beanref="header.fileName" type="string" >
+                    <conversion-option name="justify" value="left" />
+                </record-element>
+                <record-element length="8" beanref="header.origin" type="string" >
+                    <conversion-option name="justify" value="left" />
+                </record-element>
+                <record-element length="8" beanref="header.date" type="date" >
+                    <conversion-option name="format" value="yyyyMMdd" />
+                </record-element>
+                <record-element length="214" />
+            </line>
+        </record-definition>
+    </record>
+
+    <record name="footer">
+        <record-ident>
+            <field-ident field-start="0" field-length="2">
+                <match-string>99</match-string>
+            </field-ident>
+        </record-ident>
+        <record-definition>
+            <bean name="footer" class="data.myibov.Footer"/>
+            <line>
+                <record-element length="2" />
+                <record-element length="13" beanref="footer.fileName" type="string" >
+                    <conversion-option name="justify" value="left" />
+                </record-element>
+                <record-element length="8" beanref="footer.origin" type="string" >
+                    <conversion-option name="justify" value="left" />
+                </record-element>
+                <record-element length="8" beanref="footer.date" type="date" >
+                    <conversion-option name="format" value="yyyyMMdd" />
+                </record-element>
+                <record-element length="11" beanref="footer.registriesCount" type="long" />
+                <record-element length="203" />
+            </line>
+        </record-definition>
+    </record>
+
+</file-format>
