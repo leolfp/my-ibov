@@ -121,16 +121,16 @@ public class SpecializedConverter {
     }
 
     /**
-     * Conversion function for <code>Long</code>, returns the source string with padding removed if requested,
-     * converted into a long.
+     * Conversion function for <code>Short</code>, returns the source string with padding removed if requested,
+     * converted into a short.
      *
      * @param str The source string
      * @param options The conversion-option values for the field
-     * @return The converted long value
+     * @return The converted short value
      * @throws FlatwormConversionException If the source number fails to parse as an long value.
      */
 
-    public Long convertLong(String str, Map<String, ConversionOption> options) throws FlatwormConversionException
+    public Short convertShort(String str, Map<String, ConversionOption> options) throws FlatwormConversionException
     {
         try
         {
@@ -139,7 +139,7 @@ public class SpecializedConverter {
                 return null;
             } else
             {
-                return Long.valueOf(str);
+                return Short.valueOf(str);
             }
         } catch (NumberFormatException ex)
         {
@@ -148,14 +148,51 @@ public class SpecializedConverter {
         }
     }
 
-    public String convertLong(Object obj, Map<String, ConversionOption> options)
+    public String convertShort(Object obj, Map<String, ConversionOption> options)
     {
         if (obj == null)
         {
             return null;
         }
-        Long l = (Long) obj;
-        return Long.toString(l.longValue());
+        Short l = (Short) obj;
+        return Short.toString(l.shortValue());
     }
 
+    /**
+     * Conversion function for <code>Integer</code>, returns the source string with padding removed if requested,
+     * converted into a short.
+     *
+     * @param str The source string
+     * @param options The conversion-option values for the field
+     * @return The converted int value
+     * @throws FlatwormConversionException If the source number fails to parse as an long value.
+     */
+
+    public Integer convertInteger(String str, Map<String, ConversionOption> options) throws FlatwormConversionException
+    {
+        try
+        {
+            if (str.trim().length() == 0)
+            {
+                return null;
+            } else
+            {
+                return Integer.valueOf(str);
+            }
+        } catch (NumberFormatException ex)
+        {
+            log.error(ex);
+            throw new FlatwormConversionException(str);
+        }
+    }
+
+    public String convertInteger(Object obj, Map<String, ConversionOption> options)
+    {
+        if (obj == null)
+        {
+            return null;
+        }
+        Integer l = (Integer) obj;
+        return Integer.toString(l.intValue());
+    }
 }

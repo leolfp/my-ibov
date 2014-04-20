@@ -4,7 +4,7 @@
     <converter name="string" class="com.blackbear.flatworm.converters.CoreConverters" method="convertChar" return-type="java.lang.String"/>
     <converter name="decimal" class="biz.myibov.SpecializedConverter" method="convertBigDecimal" return-type="java.math.BigDecimal"/>
     <converter name="integer" class="biz.myibov.SpecializedConverter" method="convertBigInteger" return-type="java.math.BigInteger"/>
-    <converter name="int" class="biz.myibov.SpecializedConverter" method="convertInt" return-type="java.lang.Integer"/>
+    <converter name="int" class="biz.myibov.SpecializedConverter" method="convertInteger" return-type="java.lang.Integer"/>
     <converter name="short" class="biz.myibov.SpecializedConverter" method="convertShort" return-type="java.lang.Short"/>
     <converter name="date" class="com.blackbear.flatworm.converters.CoreConverters" method="convertDate" return-type="java.util.Date"/>
 
