@@ -9,8 +9,6 @@ import javax.persistence.GenerationType
 import javax.persistence.Id
 import javax.persistence.NamedQueries
 import javax.persistence.NamedQuery
-import javax.persistence.Table
-import javax.persistence.UniqueConstraint
 
 /**
  * Created by leonardo on 4/13/14.
@@ -30,27 +28,28 @@ class Quote {
     Long id
 
     @Column
-    @Index(columnNames = ["codNeg", "data"])
+    @Index
     Date data
 
     @Column(length=2)
     String codBdi
 
     @Column(length=12)
-    @Index
+    @Index(columnNames = ["codNeg", "data"])
     String codNeg
 
-    @Column(precision=3)
-    Long tpMerc
+    @Column(precision=3,scale=0)
+    Short tpMerc
 
     @Column(length=12)
+    @Index(columnNames = ["nomRes", "codBdi", "data"])
     String nomRes
 
     @Column(length=10)
     String especi
 
-    @Column(precision=3)
-    Long prazoT
+    @Column(precision=3,scale=0)
+    Short prazoT
 
     @Column(length=4)
     String modRef
@@ -76,10 +75,10 @@ class Quote {
     @Column(precision=13,scale=2)
     BigDecimal preOfV
 
-    @Column(precision=5)
-    Long totNeg
+    @Column(precision=5,scale=0)
+    Short totNeg
 
-    @Column(precision=18)
+    @Column(precision=18,scale=0)
     BigInteger quaTot
 
     @Column(precision=18,scale=2)
@@ -94,8 +93,8 @@ class Quote {
     @Column
     Date datVen
 
-    @Column(precision=7)
-    Long fatCot
+    @Column(precision=7,scale=0)
+    Integer fatCot
 
     @Column(precision=13,scale=6)
     BigDecimal ptoExe
@@ -103,6 +102,6 @@ class Quote {
     @Column(length=12)
     String codIsi
 
-    @Column(precision=3)
-    Long disMes
+    @Column(precision=3,scale=0)
+    Short disMes
 }
