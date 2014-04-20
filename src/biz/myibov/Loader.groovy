@@ -11,23 +11,26 @@ import java.util.zip.ZipFile
  */
 class Loader {
     static fileFormat = new ConfigurationReader().loadConfigurationFile('./Hist/histFormat.xml')
+    static loadFolder = new File('./Hist/loaded/')
 
     static List load(File file){
-        def ret = []
+        def beans = []
 
         ZipFile zip = new ZipFile(file, ZipFile.OPEN_READ)
+        BufferedReader br
         try {
             ZipEntry entry = zip.entries().nextElement()
-            BufferedReader br = new BufferedReader(new InputStreamReader(zip.getInputStream(entry)))
+            br = new BufferedReader(new InputStreamReader(zip.getInputStream(entry)))
             MatchedRecord res
             while ((res = fileFormat.getNextRecord(br)) != null) {
-                ret.add(res.getBean(res.recordName))
+                beans.add(res.getBean(res.recordName))
             }
         } catch(e) {
             e.printStackTrace(System.err)
         } finally {
             zip.close()
+            if (br != null) br.close()
         }
-        return ret
+        return beans
     }
 }

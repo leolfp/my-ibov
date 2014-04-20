@@ -1,5 +1,5 @@
 <component name="libraryTable">
-  <library name="JPA 1.0">
+  <library name="Java EE 5-Java EE 5">
     <CLASSES>
       <root url="jar://$PROJECT_DIR$/lib/javaee.jar!/" />
     </CLASSES>
