@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<cronentries>
-  <cron>
-    <url>/cron/updateQuotes</url>
-    <description>Incrementally download quotes every business day</description>
-    <schedule>every mon,tue,wed,thu,fri 19:00</schedule>
-      <timezone>America/Sao_Paulo</timezone>
-  </cron>
-</cronentries>
