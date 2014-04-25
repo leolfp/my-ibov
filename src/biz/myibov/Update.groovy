@@ -7,10 +7,9 @@ def dataAccess = new DataAccess()
 // Use esse script para atualizar os dados de forma incremental
 
 // Faz download das datas faltantes
-print "Downloading additional files... "
+println "Downloading additional files... "
 def files = LoadPlanner.listUpdateDownloads()
 def latest = Downloader.download(files)
-if (latest != null) LoadPlanner.saveLatestDay(latest)
 println "Done."
 
 // Atualiza o banco de dados
@@ -24,3 +23,6 @@ Downloader.downloadFolder.listFiles().each {
         Downloader.ant.move(file:it, todir:Loader.loadFolder)
     println "Done."
 }
+
+// Marca o último download
+if (latest != null) LoadPlanner.saveLatestDay(latest)

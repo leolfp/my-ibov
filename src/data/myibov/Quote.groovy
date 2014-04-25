@@ -76,7 +76,7 @@ class Quote {
     BigDecimal preOfV
 
     @Column(precision=5,scale=0)
-    Short totNeg
+    Integer totNeg
 
     @Column(precision=18,scale=0)
     BigInteger quaTot

@@ -18,7 +18,7 @@ class Downloader {
             def date = obj[0]
             def fileName = obj[1]
             try {
-                ant.get(src: "${urlPrefix}${fileName}", dest: "${downloadFolder.path}${fileName}", verbose: false, usetimestamp: true)
+                ant.get(src: "${urlPrefix}${fileName}", dest: "${downloadFolder.path}/${fileName}", verbose: false, usetimestamp: true)
                 latestSuccessful = date
             } catch (e) {
                 System.err.println "Error downloading file ${fileName}. Possibly holiday."

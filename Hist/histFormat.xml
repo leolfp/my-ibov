@@ -86,7 +86,7 @@
                     <conversion-option name="pad-character" value="0"/>
                     <conversion-option name="justify" value="right"/>
                 </record-element>
-                <record-element length="5" beanref="quote.totNeg" type="short" >
+                <record-element length="5" beanref="quote.totNeg" type="int" >
                     <conversion-option name="pad-character" value="0"/>
                     <conversion-option name="justify" value="right"/>
                 </record-element>
@@ -176,7 +176,7 @@
                 <record-element length="8" beanref="footer.date" type="date" >
                     <conversion-option name="format" value="yyyyMMdd" />
                 </record-element>
-                <record-element length="11" beanref="footer.registriesCount" type="long" />
+                <record-element length="11" beanref="footer.registriesCount" type="int" />
                 <record-element length="203" />
             </line>
         </record-definition>

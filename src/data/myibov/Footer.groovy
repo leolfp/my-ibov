@@ -7,5 +7,5 @@ class Footer {
     String fileName
     String origin
     Date date
-    Long registriesCount
+    Integer registriesCount
 }
