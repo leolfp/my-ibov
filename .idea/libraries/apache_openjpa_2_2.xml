@@ -1,12 +1,13 @@
 <component name="libraryTable">
   <library name="apache-openjpa-2.2">
     <CLASSES>
-      <root url="file:///Library/apache-openjpa-2.2.2" />
+      <root url="jar://$PROJECT_DIR$/../_Libs/apache-openjpa-2.2.2/openjpa-all-2.2.2.jar!/" />
     </CLASSES>
     <JAVADOC>
-      <root url="file:///Library/apache-openjpa-2.2.2/docs/javadoc" />
+      <root url="file://$PROJECT_DIR$/../_Libs/apache-openjpa-2.2.2/docs/javadoc" />
     </JAVADOC>
-    <SOURCES />
-    <jarDirectory url="file:///Library/apache-openjpa-2.2.2" recursive="false" />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.ideaLibSources/openjpa-all-2.2.2-sources.jar!/" />
+    </SOURCES>
   </library>
 </component>

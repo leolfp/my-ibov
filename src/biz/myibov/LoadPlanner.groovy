@@ -49,7 +49,7 @@ class LoadPlanner {
     static Calendar loadLatestDay(){
         def cal = Calendar.instance
         cal.setTime(formatter.parse(latestDayFile.readLines().first()))
-        cal.set(HOUR, 19)
+        cal.set HOUR, 19
         return cal
     }
 
@@ -59,10 +59,6 @@ class LoadPlanner {
 
     static Calendar loadToday(){
         def today = Calendar.instance
-        today.set HOUR_OF_DAY, 0
-        today.set MINUTE, 0
-        today.set SECOND, 0
-        today.set MILLISECOND, 0
         return today;
     }
 }

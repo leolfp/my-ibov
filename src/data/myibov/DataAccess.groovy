@@ -7,22 +7,27 @@ import javax.persistence.Persistence
  */
 class DataAccess {
     def factory
-    def manager
 
     DataAccess(){
         factory = Persistence.createEntityManagerFactory 'MyIbovStore'
-        manager = factory.createEntityManager()
     }
 
     boolean store(List quotes){
+        def manager = factory.createEntityManager()
         try {
-            manager.transaction.begin()
-            quotes.each { if(it instanceof Quote) manager.persist it }
-            manager.transaction.commit()
-            return true;
-        } catch(e) {
-            e.printStackTrace System.err
-            return false;
+            try {
+                manager.transaction.begin()
+                quotes.each { if (it instanceof Quote) manager.persist it }
+                manager.transaction.commit()
+                return true
+            } catch (e) {
+                e.printStackTrace System.err
+                return false
+            } finally {
+                if (manager.transaction.active) manager.transaction.rollback()
+            }
+        } finally {
+            manager.close()
         }
     }
 }

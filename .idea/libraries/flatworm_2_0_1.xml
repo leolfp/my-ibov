@@ -1,0 +1,18 @@
+<component name="libraryTable">
+  <library name="flatworm-2.0.1">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../_Libs/flatworm-2.0.1/flatworm-2.0.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../_Libs/flatworm-2.0.1/lib/commons-beanutils.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../_Libs/flatworm-2.0.1/lib/commons-collections-3.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../_Libs/flatworm-2.0.1/lib/commons-lang-2.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../_Libs/flatworm-2.0.1/lib/commons-logging.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../_Libs/flatworm-2.0.1/lib/log4j-1.2.8.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="file://$PROJECT_DIR$/../_Libs/flatworm-2.0.1/doc/javadoc" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="file://$PROJECT_DIR$/../_Libs/flatworm-2.0.1/src" />
+    </SOURCES>
+  </library>
+</component>
