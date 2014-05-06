@@ -19,9 +19,9 @@ class LoadPlanner {
         def fileNames = []
         def day
 
-        latestDay.roll DAY_OF_MONTH, 1
+        latestDay.roll DAY_OF_YEAR, 1
 
-        for(day = latestDay; day.before(today); day.roll(DAY_OF_MONTH, 1))
+        for(day = latestDay; day.before(today); day.roll(DATE, 1))
             if(day.get(DAY_OF_WEEK) != SATURDAY && day.get(DAY_OF_WEEK) != SUNDAY)
                 fileNames.add([day.clone(), String.format(dailyFileMask, day.get(DAY_OF_MONTH), day.get(MONTH) + 1, day.get(YEAR))])
 
