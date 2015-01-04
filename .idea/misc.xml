@@ -3,19 +3,6 @@
   <component name="EntryPointsManager">
     <entry_points version="2.0" />
   </component>
-  <component name="FacetAutodetectingManager">
-    <autodetection-disabled>
-      <facet-type id="javaeeApplication">
-        <modules>
-          <module name="MyIbov">
-            <files>
-              <file url="file://$PROJECT_DIR$/META-INF/application.xml" />
-            </files>
-          </module>
-        </modules>
-      </facet-type>
-    </autodetection-disabled>
-  </component>
   <component name="IdProvider" IDEtalkID="F708143F91FDA73101C563F8094EAAB5" />
   <component name="JavadocGenerationManager">
     <option name="OUTPUT_DIRECTORY" />

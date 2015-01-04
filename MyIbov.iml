@@ -24,6 +24,7 @@
     <orderEntry type="library" scope="RUNTIME" name="mysql" level="application" />
     <orderEntry type="library" name="flatworm-2.0.1" level="project" />
     <orderEntry type="library" name="groovy-2.2.2" level="application" />
+    <orderEntry type="library" name="slf4j-simple-1.7.7" level="project" />
   </component>
 </module>
 
