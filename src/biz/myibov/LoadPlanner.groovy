@@ -28,6 +28,14 @@ class LoadPlanner {
         return fileNames
     }
 
+    static List getUpdateDownloads(Calendar day) {
+        def fileNames = []
+
+        fileNames.add([day.clone(), String.format(dailyFileMask, day.get(DAY_OF_MONTH), day.get(MONTH) + 1, day.get(YEAR))])
+
+        return fileNames
+    }
+
     static List listStartupDownloads(int year = loadFirstYear(), Calendar today = loadToday()){
         def fileNames = []
         def day = Calendar.instance

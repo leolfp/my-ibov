@@ -2,6 +2,8 @@ package biz.myibov
 
 import data.myibov.DataAccess
 
+import java.text.SimpleDateFormat
+
 /**
  * Created by Leonardo on 18/05/2014.
  */
@@ -11,8 +13,10 @@ class MyIbov {
             startup();
         } else if(args.length == 1 && args[0].equals('update')){
             update();
+        } else if(args.length == 2 && args[0].equals('fetch')){
+            fetch(args[1]);
         } else {
-            println('Usage: MyIbov {startup|update}')
+            println('Usage: MyIbov { startup | update | fetch yyyy-mm-dd }')
         }
     }
 
@@ -23,14 +27,21 @@ class MyIbov {
         LoadPlanner.saveLatestDay(latest)
     }
 
-    static void update(){
+    static void fetch(String date){
+        def df = new SimpleDateFormat("yyyy-MM-dd")
+        Calendar c = Calendar.instance
+        c.setTime(df.parse(date))
+        update(c)
+    }
+
+    static void update(Calendar date = null){
         def dataAccess = new DataAccess()
 
         // Use esse método para atualizar os dados de forma incremental
 
         // Faz download das datas faltantes
         println "Downloading additional files... "
-        def files = LoadPlanner.listUpdateDownloads()
+        def files = (date == null) ? LoadPlanner.listUpdateDownloads() : LoadPlanner.getUpdateDownloads(date);
         def latest = Downloader.download(files)
         println "Done."
 
@@ -47,6 +58,6 @@ class MyIbov {
         }
 
         // Marca o último download
-        if (latest != null) LoadPlanner.saveLatestDay(latest)
+        if (date == null && latest != null) LoadPlanner.saveLatestDay(latest)
     }
 }
