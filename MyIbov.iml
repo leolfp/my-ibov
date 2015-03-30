@@ -7,7 +7,7 @@
         <setting name="provider-name" value="OpenJPA" />
         <datasource-mapping>
           <factory-entry name="AddressBookStore" value="f1466916-072d-437a-8b2f-389990bb0fde" />
-          <factory-entry name="MyIbovStore" value="de31afa0-fb96-4911-8c0b-11076f7109e2" />
+          <factory-entry name="MyIbovStore" value="c83bc343-f324-4afc-a25b-8cb619973ded" />
         </datasource-mapping>
         <deploymentDescriptor name="persistence.xml" url="file://$MODULE_DIR$/src/META-INF/persistence.xml" />
       </configuration>
@@ -23,8 +23,7 @@
     <orderEntry type="library" name="apache-openjpa-2.2" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="mysql" level="application" />
     <orderEntry type="library" name="flatworm-2.0.1" level="project" />
-    <orderEntry type="library" name="groovy-2.2.2" level="application" />
     <orderEntry type="library" name="slf4j-simple-1.7.7" level="project" />
+    <orderEntry type="library" name="groovy-2.4.3" level="application" />
   </component>
 </module>
-

@@ -16,7 +16,7 @@ class MyIbov {
         } else if(args.length == 2 && args[0].equals('fetch')){
             fetch(args[1]);
         } else {
-            println('Usage: MyIbov { startup | update | fetch yyyy-mm-dd }')
+            println 'Usage: MyIbov { startup | update | fetch yyyy-mm-dd }'
         }
     }
 
@@ -28,7 +28,7 @@ class MyIbov {
     }
 
     static void fetch(String date){
-        def df = new SimpleDateFormat("yyyy-MM-dd")
+        def df = new SimpleDateFormat('yyyy-MM-dd')
         Calendar c = Calendar.instance
         c.setTime(df.parse(date))
         update(c)
@@ -40,10 +40,10 @@ class MyIbov {
         // Use esse método para atualizar os dados de forma incremental
 
         // Faz download das datas faltantes
-        println "Downloading additional files... "
+        println 'Downloading additional files... '
         def files = (date == null) ? LoadPlanner.listUpdateDownloads() : LoadPlanner.getUpdateDownloads(date);
         def latest = Downloader.download(files)
-        println "Done."
+        println 'Done.'
 
         // Atualiza o banco de dados
         Downloader.downloadFolder.listFiles().each {
@@ -51,10 +51,10 @@ class MyIbov {
             def quotes = Loader.load(it)
             println "Done. ${quotes.size()} quotes loaded."
 
-            print "Storing quotes... "
+            print 'Storing quotes... '
             if(dataAccess.store(quotes))
                 Downloader.ant.move(file:it, todir:Loader.loadFolder)
-            println "Done."
+            println 'Done.'
         }
 
         // Marca o último download
