@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source name="MyIbovStore/OpenJPA" uuid="c83bc343-f324-4afc-a25b-8cb619973ded">
+    <database-info product="MySQL" version="5.6.17-log" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.30 ( Revision: alexander.soklakov@oracle.com-20140310090514-8xt1yoht5ksg2e7c )">
+      <extra-name-characters>#@</extra-name-characters>
+      <identifier-quote-string>`</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower"/>
+    <schema name="" catalog="myibov"/>
+    <table name="openjpa_sequence_table" schema="" catalog="myibov" type="TABLE">
+      <column name="ID" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6"/>
+      <column name="SEQUENCE_VALUE" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <primary-key name="PRIMARY" columns="ID"/>
+    </table>
+    <table name="quote" schema="" catalog="myibov" type="TABLE">
+      <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="codBdi" sqlType="VARCHAR" precision="2" scale="0" nullable="true" jdbcType="12"/>
+      <column name="codIsi" sqlType="VARCHAR" precision="12" scale="0" nullable="true" jdbcType="12"/>
+      <column name="codNeg" sqlType="VARCHAR" precision="12" scale="0" nullable="true" jdbcType="12"/>
+      <column name="datVen" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="data" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="disMes" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="especi" sqlType="VARCHAR" precision="10" scale="0" nullable="true" jdbcType="12"/>
+      <column name="fatCot" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="indOpc" sqlType="VARCHAR" precision="1" scale="0" nullable="true" jdbcType="12"/>
+      <column name="modRef" sqlType="VARCHAR" precision="4" scale="0" nullable="true" jdbcType="12"/>
+      <column name="nomRes" sqlType="VARCHAR" precision="12" scale="0" nullable="true" jdbcType="12"/>
+      <column name="prazoT" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="preAbe" sqlType="DECIMAL" precision="13" scale="2" nullable="true" jdbcType="3"/>
+      <column name="preExe" sqlType="DECIMAL" precision="13" scale="2" nullable="true" jdbcType="3"/>
+      <column name="preMax" sqlType="DECIMAL" precision="13" scale="2" nullable="true" jdbcType="3"/>
+      <column name="preMed" sqlType="DECIMAL" precision="13" scale="2" nullable="true" jdbcType="3"/>
+      <column name="preMin" sqlType="DECIMAL" precision="13" scale="2" nullable="true" jdbcType="3"/>
+      <column name="preOfC" sqlType="DECIMAL" precision="13" scale="2" nullable="true" jdbcType="3"/>
+      <column name="preOfV" sqlType="DECIMAL" precision="13" scale="2" nullable="true" jdbcType="3"/>
+      <column name="preUlt" sqlType="DECIMAL" precision="13" scale="2" nullable="true" jdbcType="3"/>
+      <column name="ptoExe" sqlType="DECIMAL" precision="13" scale="6" nullable="true" jdbcType="3"/>
+      <column name="quaTot" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="totNeg" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="tpMerc" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="volTot" sqlType="DECIMAL" precision="18" scale="2" nullable="true" jdbcType="3"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <index name="I_QUOTE_CODNEG" unique="false" columns="codNeg"/>
+      <index name="I_QUOTE_CODNEG_DATA" unique="false" columns="codNeg,data"/>
+      <index name="I_QUOTE_DATA" unique="false" columns="data"/>
+      <index name="I_QUOTE_NOMRES_CODBDI_DATVEN" unique="false" columns="codBdi,nomRes,datVen"/>
+    </table>
+  </data-source>
+</component>
