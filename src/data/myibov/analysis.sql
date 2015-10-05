@@ -84,7 +84,7 @@ WHERE codBdi = 78 AND
 ORDER BY preExe;
 
 
--- Variance and stddev
+-- Variance and stddev in latest 90 days, for stock only
 SELECT
   codNeg,
   sum(volTot),
