@@ -51,12 +51,11 @@ ORDER BY datVen;
 
 -- Next option series - choose quote on where clause
 SELECT
-  MAX(datVen)
+  MIN(datVen)
 FROM quote
 WHERE codBdi = 78 AND
       nomRes = 'PETR' AND
-      datVen > NOW()
-ORDER BY datVen;
+      datVen > NOW();
 
 
 -- All traded options for given series - choose quote and series on where clause
@@ -65,7 +64,8 @@ SELECT DISTINCT
   right(codNeg, length(codNeg)-(length(nomRes)+1)) AS 'codOpc',
   preExe
 FROM quote
-WHERE nomRes = 'PETR' AND
+WHERE codBdi = 78 AND
+      nomRes = 'PETR' AND
       datVen = '2015-10-19'
 ORDER BY preExe;
 
