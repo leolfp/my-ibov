@@ -82,3 +82,18 @@ WHERE codBdi = 78 AND
       datVen = '2015-10-19' AND
       data = (SELECT MAX(data) FROM quote)
 ORDER BY preExe;
+
+
+-- Variance and stddev
+SELECT
+  codNeg,
+  sum(volTot),
+  min(preMin),
+  max(preMax),
+  ((max(preMax)/min(preMin))-1)*100   AS 'amplitude',
+  stddev_samp(preUlt)*100             AS 'desvio'
+FROM quote
+WHERE data >= DATE_ADD(NOW(), INTERVAL -90 DAY) AND
+      codBdi = 02
+GROUP BY codNeg
+ORDER BY 2 DESC;
