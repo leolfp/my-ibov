@@ -1,5 +1,84 @@
-select codNeg, data, coalesce(preExe,0) preExe, preAbe, preMax, preMed, preMin, preUlt, volTot, coalesce(preExe,0) + preUlt valor
-from quote
-where ((codBdi = 78 and nomRes = 'PETR' and datVen = '2014-05-19') or (codNeg = 'PETR4'))
-and data >= '2014-02-01'
+-- Stock and options - choose quotes on where clause
+SELECT
+  codNeg,
+  data,
+  coalesce(preExe, 0)          AS 'preExe',
+  preAbe,
+  preMax,
+  preMed,
+  preMin,
+  preUlt,
+  volTot,
+  coalesce(preExe, 0) + preUlt AS 'valor'
+FROM quote
+WHERE ((codBdi = 78 AND nomRes = 'PETR' AND datVen = '2015-10-19') OR (codNeg = 'PETR4'))
+      AND data >= DATE_ADD(NOW(), INTERVAL -90 DAY);
 
+
+-- Options volumes query, by expiration date
+SELECT
+  nomRes,
+  codNeg,
+  datVen,
+  volTot
+FROM quote
+WHERE (codBdi = 78) AND (data = (SELECT max(data) FROM quote));
+
+
+-- Candles query - choose quote on where clause
+SELECT
+  data,
+  volTot,
+  preAbe,
+  preMax,
+  preMin,
+  preUlt
+FROM quote
+WHERE codNeg = 'PETR4' AND
+      data >= DATE_ADD(NOW(), INTERVAL -90 DAY) AND
+      data <= NOW();
+
+
+-- All options series from now - choose quote on where clause
+SELECT DISTINCT
+  datVen
+FROM quote
+WHERE codBdi = 78 AND
+      nomRes = 'PETR' AND
+      datVen > NOW()
+ORDER BY datVen;
+
+
+-- Next option series - choose quote on where clause
+SELECT
+  MAX(datVen)
+FROM quote
+WHERE codBdi = 78 AND
+      nomRes = 'PETR' AND
+      datVen > NOW()
+ORDER BY datVen;
+
+
+-- All traded options for given series - choose quote and series on where clause
+SELECT DISTINCT
+  codNeg,
+  right(codNeg, length(codNeg)-(length(nomRes)+1)) AS 'codOpc',
+  preExe
+FROM quote
+WHERE nomRes = 'PETR' AND
+      datVen = '2015-10-19'
+ORDER BY preExe;
+
+
+-- All options for given series traded last business day - choose quote and series on where clause
+SELECT
+  codNeg,
+  right(codNeg, length(codNeg)-(length(nomRes)+1)) AS 'codOpc',
+  preExe,
+  volTot
+FROM quote
+WHERE codBdi = 78 AND
+      nomRes = 'PETR' AND
+      datVen = '2015-10-19' AND
+      data = (SELECT MAX(data) FROM quote)
+ORDER BY preExe;

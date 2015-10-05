@@ -13,7 +13,11 @@
         <property name="characterSetResults" value="utf8" />
         <property name="yearIsDateType" value="false" />
       </driver-properties>
-      <libraries />
+      <libraries>
+        <library>
+          <url>jar://$PROJECT_DIR$/lib/mysql-connector-java-5.1.30-bin.jar!/</url>
+        </library>
+      </libraries>
     </data-source>
   </component>
 </project>
