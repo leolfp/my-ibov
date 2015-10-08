@@ -97,3 +97,18 @@ WHERE data >= DATE_ADD(NOW(), INTERVAL -90 DAY) AND
       codBdi = 02
 GROUP BY codNeg
 ORDER BY 2 DESC;
+
+
+-- Hyphotesis tests
+SET @r1=0;
+SET @r2=0;
+SELECT
+  t1.preUlt < t2.preAbe AS abriuEmAlta,
+  t2.preAbe < t2.preUlt AS subiuAlemDaAbertura,
+  t1.preUlt < t2.preUlt AS fechouEmAlta,
+  count(*)
+FROM
+  (SELECT @r1:=@r1 + 1 AS n, data, preAbe, preUlt FROM quote WHERE codNeg = 'PETR4' ORDER BY data) AS t1,
+  (SELECT @r2:=@r2 + 1 AS n, data, preAbe, preUlt FROM quote WHERE codNeg = 'PETR4' ORDER BY data) AS t2
+WHERE t1.n + 1 = t2.n
+GROUP BY 1, 2, 3
