@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DataSourceManagerImpl" format="xml" hash="1241811680">
+  <component name="DataSourceManagerImpl" format="xml" hash="143692628">
     <data-source source="LOCAL" name="MyIbovStore/OpenJPA" uuid="c83bc343-f324-4afc-a25b-8cb619973ded">
       <driver-ref>mysql</driver-ref>
       <synchronize>true</synchronize>
@@ -15,7 +15,7 @@
       </driver-properties>
       <libraries>
         <library>
-          <url>jar://$PROJECT_DIR$/lib/mysql-connector-java-5.1.30-bin.jar!/</url>
+          <url>jar://$PROJECT_DIR$/lib/mysql-connector-java-5.1.36-bin.jar!/</url>
         </library>
       </libraries>
     </data-source>
