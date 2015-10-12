@@ -111,4 +111,90 @@ FROM
   (SELECT @r1:=@r1 + 1 AS n, data, preAbe, preUlt FROM quote WHERE codNeg = 'PETR4' ORDER BY data) AS t1,
   (SELECT @r2:=@r2 + 1 AS n, data, preAbe, preUlt FROM quote WHERE codNeg = 'PETR4' ORDER BY data) AS t2
 WHERE t1.n + 1 = t2.n
-GROUP BY 1, 2, 3
+GROUP BY 1, 2, 3;
+
+
+-- Stock with recent negotiations
+SELECT
+  codNeg,
+  min(data),
+  max(data)
+FROM
+  quote
+GROUP BY
+  codNeg
+HAVING
+  max(data) >= adddate(curdate(), -30)
+ORDER BY 3 DESC;
+
+
+-- Variance and std dev
+SELECT
+  codNeg,
+  avg(volTot),
+  min(preMin),
+  max(preMax),
+  ((max(preMax)/min(preMin))-1)*100 as pct,
+  stddev_samp(preUlt)*100,
+  max(data)
+FROM
+  quote
+WHERE
+  data >= adddate(curdate(), -30)
+GROUP BY
+  codNeg
+ORDER BY 2 DESC;
+
+
+-- Stock history - choose quote on where clause
+SET @r1=0;
+SET @r2=0;
+SELECT
+  antes.data          AS start,
+  depois.data         AS end,
+  antes.preUlt        AS start_value,
+  depois.preUlt       AS end_value,
+  depois.n - antes.n  AS delta,
+  ((depois.preUlt/antes.preUlt) - 1) * 100 AS pct,
+  (pow(depois.preUlt/antes.preUlt, 1.0/(depois.n - antes.n)) - 1) * 100 as adu
+FROM
+  (SELECT @r1:=@r1 + 1 AS n, data, preUlt FROM quote WHERE codNeg = 'PETR4' AND data >= adddate(curdate(), -30) ORDER BY data) AS antes,
+  (SELECT @r2:=@r2 + 1 AS n, data, preUlt FROM quote WHERE codNeg = 'PETR4' AND data >= adddate(curdate(), -30) ORDER BY data) AS depois
+WHERE
+  antes.n < depois.n AND
+  depois.n - antes.n > 5
+ORDER BY 7 DESC;
+
+
+-- Top volumes
+SELECT
+  codNeg
+FROM
+  quote
+WHERE
+  data = (SELECT max(data) FROM quote)
+ORDER BY
+  volTot DESC
+LIMIT 50;
+
+-- Best week history up (DESC) or down (ASC)
+SELECT
+  antes.codNeg,
+  antes.data          AS start,
+  depois.data         AS end,
+  antes.preUlt        AS start_value,
+  depois.preUlt       AS end_value,
+  datediff(depois.data, antes.data) AS delta,
+  ((depois.preUlt/antes.preUlt) - 1) * 100 AS pct,
+  (pow(depois.preUlt/antes.preUlt, 1.0/datediff(depois.data, antes.data)) - 1) * 100 AS ad
+FROM
+  quote AS antes,
+  quote AS depois,
+  (SELECT codNeg FROM quote WHERE data = (SELECT max(data) FROM quote) ORDER BY volTot DESC LIMIT 50) AS top
+WHERE
+  antes.codNeg = depois.codNeg AND
+  top.codNeg = antes.codNeg AND
+  adddate(antes.data, 7) < depois.data AND
+  antes.data >= adddate(curdate(), -30) AND
+  depois.data >= adddate(curdate(), -7)
+ORDER BY 8 DESC;
