@@ -194,7 +194,7 @@ FROM
 WHERE
   antes.codNeg = depois.codNeg AND
   top.codNeg = antes.codNeg AND
-  adddate(antes.data, 7) < depois.data AND
+  adddate(antes.data, 5) < depois.data AND
   antes.data >= adddate(curdate(), -30) AND
   depois.data >= adddate(curdate(), -7)
 ORDER BY 8 DESC;
