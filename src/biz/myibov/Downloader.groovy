@@ -5,7 +5,7 @@ package biz.myibov
  */
 class Downloader {
     static ant = new AntBuilder()
-    static urlPrefix = 'http://www.bmfbovespa.com.br/InstDados/SerHist/'
+    static urlPrefix = 'http://bvmf.bmfbovespa.com.br/InstDados/SerHist/'
     // COTAHIST_A2010.ZIP # year
     // COTAHIST_M032010.ZIP # month
     // COTAHIST_D01042010.ZIP # day
