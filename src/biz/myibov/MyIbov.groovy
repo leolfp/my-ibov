@@ -13,10 +13,14 @@ class MyIbov {
             startup();
         } else if(args.length == 1 && args[0].equals('update')){
             update();
+        } else if(args.length == 1 && args[0].equals('download')){
+            download();
+        } else if(args.length == 1 && args[0].equals('load')){
+            load();
         } else if(args.length == 2 && args[0].equals('fetch')){
             fetch(args[1]);
         } else {
-            println 'Usage: MyIbov { startup | update | fetch yyyy-mm-dd }'
+            println 'Usage: MyIbov { startup | update | download | load | fetch yyyy-mm-dd }'
         }
     }
 
@@ -34,16 +38,27 @@ class MyIbov {
         update(c)
     }
 
-    static void update(Calendar date = null){
-        def dataAccess = new DataAccess()
-
-        // Use esse método para atualizar os dados de forma incremental
-
+    static Calendar download(Calendar date = null){
         // Faz download das datas faltantes
         println 'Downloading additional files... '
         def files = (date == null) ? LoadPlanner.listUpdateDownloads() : LoadPlanner.getUpdateDownloads(date);
         def latest = Downloader.download(files)
         println 'Done.'
+        return latest;
+    }
+
+    static void update(Calendar date = null){
+        // Use esse método para atualizar os dados de forma incremental
+        def latest = download(date);
+
+        load();
+
+        // Marca o último load
+        if (date == null && latest != null) LoadPlanner.saveLatestDay(latest)
+    }
+
+    static void load(){
+        def dataAccess = new DataAccess()
 
         // Atualiza o banco de dados
         Downloader.downloadFolder.listFiles().each {
@@ -56,8 +71,6 @@ class MyIbov {
                 Downloader.ant.move(file:it, todir:Loader.loadFolder)
             println 'Done.'
         }
-
-        // Marca o último download
-        if (date == null && latest != null) LoadPlanner.saveLatestDay(latest)
     }
+
 }
