@@ -9,6 +9,7 @@
           <factory-entry name="AddressBookStore" value="f1466916-072d-437a-8b2f-389990bb0fde" />
           <factory-entry name="MyIbovStore" value="c83bc343-f324-4afc-a25b-8cb619973ded" />
         </datasource-mapping>
+        <naming-strategy-map />
         <deploymentDescriptor name="persistence.xml" url="file://$MODULE_DIR$/src/META-INF/persistence.xml" />
       </configuration>
     </facet>
@@ -25,5 +26,6 @@
     <orderEntry type="library" name="flatworm-2.0.1" level="project" />
     <orderEntry type="library" name="slf4j-simple-1.7.7" level="project" />
     <orderEntry type="library" name="groovy" level="application" />
+    <orderEntry type="library" name="groovy-2.4.16" level="application" />
   </component>
 </module>

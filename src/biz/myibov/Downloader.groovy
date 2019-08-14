@@ -12,7 +12,7 @@ class Downloader {
     static downloadFolder = new File('./Hist/downloaded/')
 
     static Calendar download(List files){
-        def latestSuccessful;
+        def latestSuccessful
 
         files.eachWithIndex { obj, i ->
             def date = obj[0]
