@@ -1,4 +1,4 @@
--- Stock and options - choose quotes on where clause
+-- Stock and options - choose Quotes on where clause
 SELECT
   codNeg,
   data,
@@ -10,7 +10,7 @@ SELECT
   preUlt,
   volTot,
   coalesce(preExe, 0) + preUlt AS 'valor'
-FROM quote
+FROM Quote
 WHERE ((codBdi = 78 AND nomRes = 'PETR' AND datVen = '2015-10-19') OR (codNeg = 'PETR4'))
       AND data >= DATE_ADD(NOW(), INTERVAL -90 DAY);
 
@@ -21,11 +21,11 @@ SELECT
   codNeg,
   datVen,
   volTot
-FROM quote
-WHERE (codBdi = 78) AND (data = (SELECT max(data) FROM quote));
+FROM Quote
+WHERE (codBdi = 78) AND (data = (SELECT max(data) FROM Quote));
 
 
--- Candles query - choose quote on where clause
+-- Candles query - choose Quote on where clause
 SELECT
   data,
   volTot,
@@ -33,54 +33,54 @@ SELECT
   preMax,
   preMin,
   preUlt
-FROM quote
+FROM Quote
 WHERE codNeg = 'PETR4' AND
       data >= DATE_ADD(NOW(), INTERVAL -90 DAY) AND
       data <= NOW();
 
 
--- All options series from now - choose quote on where clause
+-- All options series from now - choose Quote on where clause
 SELECT DISTINCT
   datVen
-FROM quote
+FROM Quote
 WHERE codBdi = 78 AND
       nomRes = 'PETR' AND
       datVen > NOW()
 ORDER BY datVen;
 
 
--- Next option series - choose quote on where clause
+-- Next option series - choose Quote on where clause
 SELECT
   MIN(datVen)
-FROM quote
+FROM Quote
 WHERE codBdi = 78 AND
       nomRes = 'PETR' AND
       datVen > NOW();
 
 
--- All traded options for given series - choose quote and series on where clause
+-- All traded options for given series - choose Quote and series on where clause
 SELECT DISTINCT
   codNeg,
   right(codNeg, length(codNeg)-(length(nomRes)+1)) AS 'codOpc',
   preExe
-FROM quote
+FROM Quote
 WHERE codBdi = 78 AND
       nomRes = 'PETR' AND
       datVen = '2015-10-19'
 ORDER BY preExe;
 
 
--- All options for given series traded last business day - choose quote and series on where clause
+-- All options for given series traded last business day - choose Quote and series on where clause
 SELECT
   codNeg,
   right(codNeg, length(codNeg)-(length(nomRes)+1)) AS 'codOpc',
   preExe,
   volTot
-FROM quote
+FROM Quote
 WHERE codBdi = 78 AND
       nomRes = 'PETR' AND
       datVen = '2015-10-19' AND
-      data = (SELECT MAX(data) FROM quote)
+      data = (SELECT MAX(data) FROM Quote)
 ORDER BY preExe;
 
 
@@ -92,7 +92,7 @@ SELECT
   max(preMax),
   ((max(preMax)/min(preMin))-1)*100   AS 'amplitude',
   stddev_samp(preUlt)*100             AS 'desvio'
-FROM quote
+FROM Quote
 WHERE data >= DATE_ADD(NOW(), INTERVAL -90 DAY) AND
       codBdi = 02
 GROUP BY codNeg
@@ -108,8 +108,8 @@ SELECT
   t1.preUlt < t2.preUlt AS fechouEmAlta,
   count(*)
 FROM
-  (SELECT @r1:=@r1 + 1 AS n, data, preAbe, preUlt FROM quote WHERE codNeg = 'PETR4' ORDER BY data) AS t1,
-  (SELECT @r2:=@r2 + 1 AS n, data, preAbe, preUlt FROM quote WHERE codNeg = 'PETR4' ORDER BY data) AS t2
+  (SELECT @r1:=@r1 + 1 AS n, data, preAbe, preUlt FROM Quote WHERE codNeg = 'PETR4' ORDER BY data) AS t1,
+  (SELECT @r2:=@r2 + 1 AS n, data, preAbe, preUlt FROM Quote WHERE codNeg = 'PETR4' ORDER BY data) AS t2
 WHERE t1.n + 1 = t2.n
 GROUP BY 1, 2, 3;
 
@@ -120,7 +120,7 @@ SELECT
   min(data),
   max(data)
 FROM
-  quote
+  Quote
 GROUP BY
   codNeg
 HAVING
@@ -138,7 +138,7 @@ SELECT
   stddev_samp(preUlt)*100,
   max(data)
 FROM
-  quote
+  Quote
 WHERE
   data >= adddate(curdate(), -30)
 GROUP BY
@@ -146,7 +146,7 @@ GROUP BY
 ORDER BY 2 DESC;
 
 
--- Stock history - choose quote on where clause
+-- Stock history - choose Quote on where clause
 SET @r1=0;
 SET @r2=0;
 SELECT
@@ -158,8 +158,8 @@ SELECT
   ((depois.preUlt/antes.preUlt) - 1) * 100 AS pct,
   (pow(depois.preUlt/antes.preUlt, 1.0/(depois.n - antes.n)) - 1) * 100 as adu
 FROM
-  (SELECT @r1:=@r1 + 1 AS n, data, preUlt FROM quote WHERE codNeg = 'PETR4' AND data >= adddate(curdate(), -30) ORDER BY data) AS antes,
-  (SELECT @r2:=@r2 + 1 AS n, data, preUlt FROM quote WHERE codNeg = 'PETR4' AND data >= adddate(curdate(), -30) ORDER BY data) AS depois
+  (SELECT @r1:=@r1 + 1 AS n, data, preUlt FROM Quote WHERE codNeg = 'PETR4' AND data >= adddate(curdate(), -30) ORDER BY data) AS antes,
+  (SELECT @r2:=@r2 + 1 AS n, data, preUlt FROM Quote WHERE codNeg = 'PETR4' AND data >= adddate(curdate(), -30) ORDER BY data) AS depois
 WHERE
   antes.n < depois.n AND
   depois.n - antes.n > 5
@@ -170,9 +170,9 @@ ORDER BY 7 DESC;
 SELECT
   codNeg
 FROM
-  quote
+  Quote
 WHERE
-  data = (SELECT max(data) FROM quote)
+  data = (SELECT max(data) FROM Quote)
 ORDER BY
   volTot DESC
 LIMIT 50;
@@ -188,9 +188,9 @@ SELECT
   ((depois.preUlt/antes.preUlt) - 1) * 100 AS pct,
   (pow(depois.preUlt/antes.preUlt, 1.0/datediff(depois.data, antes.data)) - 1) * 100 AS ad
 FROM
-  quote AS antes,
-  quote AS depois,
-  (SELECT codNeg FROM quote WHERE data = (SELECT max(data) FROM quote) ORDER BY volTot DESC LIMIT 50) AS top
+  Quote AS antes,
+  Quote AS depois,
+  (SELECT codNeg FROM Quote WHERE data = (SELECT max(data) FROM Quote) ORDER BY volTot DESC LIMIT 50) AS top
 WHERE
   antes.codNeg = depois.codNeg AND
   top.codNeg = antes.codNeg AND

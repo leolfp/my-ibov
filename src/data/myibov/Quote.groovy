@@ -13,7 +13,7 @@ import javax.persistence.NamedQuery
 /**
  * Created by leonardo on 4/13/14.
  */
-@Entity
+@Entity(name="Quote")
 @NamedQueries([
     @NamedQuery(name="Quote.findAll",
                 query="SELECT q FROM Quote q"),
